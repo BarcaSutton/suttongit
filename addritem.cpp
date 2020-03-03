@@ -5,7 +5,7 @@
 #include "function.h"
 #include "addritem.h"
 
-struct addritem addrinfo[100];
+//struct addritem addrinfo[100];
 void input();                      //联系人的输入 
 void search();                     //查找联系人 
 void update();                     //修改联系人 
