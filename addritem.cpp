@@ -5,11 +5,11 @@
 #include "function.h"
 #include "addritem.h"
 
-int main()
+ int main()
 { 
 	int n;
-	menu();                         //菜单功能 
-	scanf("%d",&n);                 //用户输入 
+	menu();                            //菜单功能 
+	scanf("%d",&n);                    //用户输入 
 	while(n)
 	{
 		switch(n)
