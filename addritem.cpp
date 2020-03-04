@@ -2,8 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <conio.h>
-#include "function.h"
 #include "addritem.h"
+#include "function.h"
 
 void creatphead();               //将链表的phead创建
 void input(struct node *phead);                      //联系人的输入 
@@ -17,9 +17,8 @@ void menu();
 int main()
 { 
 	int n;
-//	creatphead();                    //创建链表的头节点 
-	
 	menu();                            //菜单功能 
+	struct node *phead; 
 	creatphead();                    //创建链表的头节点 
 	scanf("%d",&n);                    //用户输入 
 	while(1)
@@ -41,9 +40,9 @@ int main()
 			default:
 			break;
 		}
-	//	getch();
-	//	menu();
-	//	scanf("%d",&n);
+		getch();
+		menu();
+		scanf("%d",&n);
 	}
 	return 0;
 } 

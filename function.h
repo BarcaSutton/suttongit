@@ -12,13 +12,13 @@ struct addritem                //定义结构体成员//
 	char email[30];
 };
 
-struct node 
+struct node
 {
 	addritem DATA;                                //数据域 
-	struct node * pnext;                          //指针域 
+	struct node *pnext;                          //指针域 
 };
 
-struct node * phead;                              //头节点
+struct node *phead;                            //头节点
 
 void creatphead();                               //将链表的phead创建 
 void input(struct node *phead);                                      //联系人的添加函数 
