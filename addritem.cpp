@@ -5,8 +5,7 @@
 #include "addritem.h"
 #include "function.h"
 
-void creatphead();               //将链表的phead创建
-void input(struct node *phead);                      //联系人的输入 
+void input();                      //联系人的输入 
 void search();                     //查找联系人 
 void update();                     //修改联系人 
 void del();                        //删除联系人 
@@ -17,15 +16,14 @@ void menu();
 int main()
 { 
 	int n;
-	menu();                            //菜单功能 
-	struct node *phead; 
-	creatphead();                    //创建链表的头节点 
+	menu();                          //菜单功能 
+   // creatphead();
 	scanf("%d",&n);                    //用户输入 
 	while(1)
 	{
 		switch(n)
 		{
-			case 1:input(phead);
+			case 1:input();
 			break;
 			case 2:search();
 			break;
