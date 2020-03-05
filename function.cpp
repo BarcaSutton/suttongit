@@ -29,8 +29,8 @@ void input()
 	{
 		phead->pnext = NULL;
 	}    
-	struct node * pfind = phead;
- 	struct node * padd = NULL;                            //创造一个新节点 
+	struct node *pfind = phead;
+ 	struct node *padd = NULL;                            //创造一个新节点 
  	padd = (struct node *)malloc(sizeof(struct node));
     while (pfind -> pnext!=NULL)                          //遍历找尾节点 
  	{
@@ -61,17 +61,17 @@ void input()
 	}
 }
 
+void del()
+{
+	
+}
+
 void search()
 {
 	
 }
 
 void update()
-{
-	
-}
-
-void del()
 {
 	
 }
@@ -85,6 +85,29 @@ void display()
 {
 	
 }
+
+void readDATA()
+{
+	struct node *pfind = phead;
+	struct node *padd =NULL;
+	FILE * fp = NULL;                                //一个文件指针 
+    fp = fopen("data.txt","r");                       //读取文件	
+	if (fp == NULL)
+	{
+		printf("文件读取失败\n");
+		return;	
+	} 
+	while (1)
+	{
+		padd = (struct node *)malloc(sizeof(struct node));	  //建立一个新指针 
+		fscanf(fp,"%s%s%s%s%s",padd -> DATA.name,padd -> DATA.occu,padd -> DATA.prof,padd -> DATA.tel,padd -> DATA.email) 
+		if (feof(fp))                       //判断是不是到末尾 
+		{
+		break; 
+		}
+	}
+	fclose(fp);
+}    
 
 void menu()
 {

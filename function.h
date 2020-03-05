@@ -25,5 +25,5 @@ void del();                                        //删除联系人函数
 void sort();                                       //排序联系人函数 
 void display();                                    //显示联系人函数 
 void menu();                                       //主菜单函数 
-
+void readDATA();                                  //从文件中读取数据到链表中 
 #endif

@@ -9,5 +9,5 @@ void del();                        //删除联系人
 void sort();                       //排序联系人 
 void display();                    //显示联系人 
 void menu(); 
-
+void readDATA(); 
 #endif 
