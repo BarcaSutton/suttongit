@@ -61,9 +61,36 @@ void input()
 	}
 }
 
-void del()
+void del(struct node *phead)
 {
+	char delname;                                  //要删除的联系人名字 
+	struct node *p1 = phead;
+	struct node *p2 = phead -> pnext;             //定义指针p1和p2方便查找 
+	struct node *p3 = NULL;                       //定义p3作为一个临时的指针 
+	printf("请输入要删除的联系人名字:\n");
+	scanf("%s",&delname);
 	
+	while (p2 != NULL)
+	{
+		if (p2 -> DATA.name == //忘了怎么写)                  //判断删除的名字是否有匹配项 
+		{
+			break;
+		}
+		p1 = p1 -> pnext;
+		p2 = p2 -> pnext; 
+	 } 
+	 if (p2 == NULL)
+	 {
+	 	printf("抱歉，无此联系人记录\n");
+	 }
+	 else
+	 {
+	 	p3 = p2 -> pnext;
+	 	free(p2);
+	 	p2 = NULL;
+	 	p1 -> pnext = p3;
+	 }
+	  
 }
 
 void search()

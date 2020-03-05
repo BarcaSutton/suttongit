@@ -29,7 +29,7 @@ int main()
 			break;
 			case 3:update();
 			break;
-			case 4:del();
+			case 4:del(phead);
 			break;
 			case 5:sort();
 			break;
