@@ -25,5 +25,6 @@ void del();                                        //删除联系人函数
 void sort();                                       //排序联系人函数 
 void display();                                    //显示联系人函数 
 void menu();                                       //主菜单函数 
-void readDATA();                                  //从文件中读取数据到链表中 
+void readDATA(struct node *phead);                                   //从文件中读取数据到链表中 
+void writeDATA(struct node *phead);                                 //把链表中数据写入data文本里    
 #endif

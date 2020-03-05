@@ -9,5 +9,6 @@ void del();                        //删除联系人
 void sort();                       //排序联系人 
 void display();                    //显示联系人 
 void menu(); 
-void readDATA(); 
+void readDATA(struct node *phead); 
+void writeDATA(struct node *phead);
 #endif 
