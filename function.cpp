@@ -30,12 +30,21 @@ void input()
 		phead->pnext = NULL;
 	}    
 	struct node * pfind = phead;
- 	struct node * padd = NULL;                         //创造一个新节点 
+ 	struct node * padd = NULL;                            //创造一个新节点 
  	padd = (struct node *)malloc(sizeof(struct node));
- 	while (pfind -> pnext!=NULL)                       //遍历找尾节点 
+    while (pfind -> pnext!=NULL)                          //遍历找尾节点 
  	{
  	pfind = pfind -> pnext;
- 	}
+ 	}	
+	printf("请输入联系人姓名:\n"); 
+	scanf("%s",padd -> DATA.name); 
+    if (strcmp(padd->DATA.name,"0")==0) 
+    { 
+    printf("姓名不能为0,增加失败!\n"); 
+    //return(phead); 
+    } 
+    else
+    {
  	 	printf("请输入联系人姓名：\n");
  		scanf("%s",padd -> DATA.name); 
  		printf("请输入联系人职业：\n");
@@ -49,6 +58,7 @@ void input()
  		padd -> pnext = NULL;                       //将padd插入到尾节点前面 
  		pfind -> pnext = padd;
  		printf("联系人%s的信息已经录入\n",padd -> DATA.name); 
+	}
 }
 
 void search()
