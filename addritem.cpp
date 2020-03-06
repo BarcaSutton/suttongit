@@ -9,13 +9,14 @@
 void input();                      //联系人的输入 
 void search();                     //查找联系人 
 void update();                     //修改联系人 
-void del();                        //删除联系人 
+void del(struct node *phead);                        //删除联系人 
 void sort();                       //排序联系人 
 void display();                    //显示联系人 
 void menu();
 
 int main()
 { 
+	struct node *phead;
 	int n;
 	menu();                          //菜单功能 
     scanf("%d",&n);                    //用户输入 

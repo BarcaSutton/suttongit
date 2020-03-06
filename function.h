@@ -16,7 +16,7 @@ struct node
 	addritem DATA;                                //数据域 
 	struct node *pnext;                          //指针域 
 };
-struct node *phead = NULL; 
+//struct node *phead = NULL; 
 //void creatphead();
 void input();                                      //联系人的添加函数 
 void search();                                     //查找联系人函数 

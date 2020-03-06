@@ -72,7 +72,7 @@ void del(struct node *phead)
 	
 	while (p2 != NULL)
 	{
-		if (p2 -> DATA.name == //忘了怎么写)                  //判断删除的名字是否有匹配项 
+		if (p2 -> DATA.name ==  &delname)                  //判断删除的名字是否有匹配项 
 		{
 			break;
 		}
