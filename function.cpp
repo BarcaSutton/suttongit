@@ -98,7 +98,7 @@ void search()
 	
 }
 
-void update()
+void revise()
 {
 	
 }
@@ -108,8 +108,14 @@ void sort()
 	
 }
 
-void display()
+void display(struct node *phead)
 {
+	struct node *pfind = phead -> pnext;
+	while (pfind!=NULL)
+	{
+		printf("姓名：%s\t 职业：%s\t 职称：%s\t 电话：%s\t 邮箱：%s\n",pfind -> DATA.name,pfind -> DATA.occu,pfind -> DATA.prof,pfind -> DATA.tel,pfind -> DATA.email);
+		pfind = pfind -> pnext;
+	}
 	
 }
 

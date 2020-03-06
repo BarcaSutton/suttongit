@@ -20,8 +20,8 @@ struct node
 //void creatphead();
 void input();                                      //联系人的添加函数 
 void search();                                     //查找联系人函数 
-void update();                                     //修改联系人函数 
-void del(struct node *phead);                                        //删除联系人函数 
+void revise();                                     //修改联系人函数 
+void del(struct node *phead);                      //删除联系人函数 
 void sort();                                       //排序联系人函数 
 void display();                                    //显示联系人函数 
 void menu();                                       //主菜单函数 
