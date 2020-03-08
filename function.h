@@ -17,8 +17,8 @@ struct node
 	struct node *pnext;                          //指针域 
 };
 //struct node *phead = NULL; 
-//void creatphead();
-void input();                                      //联系人的添加函数 
+struct node *creatphead();
+void input(struct node *phead);                                      //联系人的添加函数 
 void search();                                     //查找联系人函数 
 void revise();                                     //修改联系人函数 
 void del(struct node *phead);                      //删除联系人函数 

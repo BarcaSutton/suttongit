@@ -4,8 +4,9 @@
 #include<string.h>
 #include "function.h"
 
-/*void creatphead()
+struct node *creatphead()
 {
+	struct node *phead = NULL;
 	phead = (struct node *)malloc(sizeof(struct node));	   //phead的类型以及分配的空间 
 	if (!phead)
 	{
@@ -15,11 +16,12 @@
 	{
 		 phead->pnext = NULL;
 	}
-}*/
+	return phead;
+}
  
-void input()
+void input(struct node *phead)
 {
-	struct node *phead;                                    // 头结点 
+	/*struct node *phead;                                    // 头结点 
 	phead = (struct node *)malloc(sizeof(struct node));	   //phead的类型以及分配的空间 
 	if (!phead)
 	{
@@ -28,7 +30,7 @@ void input()
 	else
 	{
 		phead->pnext = NULL;
-	}    
+	}   */ 
 	struct node *pfind = phead;
  	struct node *padd = NULL;                            //创造一个新节点 
  	padd = (struct node *)malloc(sizeof(struct node));
@@ -59,20 +61,21 @@ void input()
  		pfind -> pnext = padd;
  		printf("联系人%s的信息已经录入\n",padd -> DATA.name); 
 	}
+//	return phead;
 }
 
 void del(struct node *phead)
 {
-	char delname;                                  //要删除的联系人名字 
+	char delname[10];                                  //要删除的联系人名字 
 	struct node *p1 = phead;
 	struct node *p2 = phead -> pnext;             //定义指针p1和p2方便查找 
 	struct node *p3 = NULL;                       //定义p3作为一个临时的指针 
 	printf("请输入要删除的联系人名字:\n");
-	scanf("%s",&delname);
+	scanf("%s",delname);
 	
 	while (p2 != NULL)
 	{
-		if (p2 -> DATA.name ==  &delname)                  //判断删除的名字是否有匹配项 
+		if (strcmp(p2 -> DATA.name,delname)==0)                  //判断删除的名字是否有匹配项 
 		{
 			break;
 		}
@@ -165,7 +168,7 @@ void menu()
 	system("cls");
 	printf("\n\n\n\n\n\n");
 	printf("\t\t|---------------------通讯录---------------------|\n");
-	printf("\t\t|                 0.exit                         |\n");
+	printf("\t\t|                 0.preserve & exit              |\n");
 	printf("\t\t|                 1.input  record                |\n");
 	printf("\t\t|                 2.search record                |\n");
 	printf("\t\t|                 3.update record                |\n");
