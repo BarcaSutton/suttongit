@@ -1,8 +1,8 @@
 #ifndef _ADDRITEM_H_
 #define _ADDRITEM_H_
 
-struct node *creatphead();
-void input();                      //联系人的输入 
+//struct node *creatphead();
+struct node *input();                      //联系人的输入 
 void search();                     //查找联系人 
 void revise();                     //修改联系人 
 void del(struct node *phead);                        //删除联系人 

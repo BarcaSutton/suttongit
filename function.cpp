@@ -4,9 +4,9 @@
 #include<string.h>
 #include "function.h"
 
-struct node *creatphead()
+/*struct node *creatphead()
 {
-	struct node *phead = NULL;
+	struct node *phead ;
 	phead = (struct node *)malloc(sizeof(struct node));	   //phead的类型以及分配的空间 
 	if (!phead)
 	{
@@ -14,14 +14,15 @@ struct node *creatphead()
 	} 
 	else
 	{
-		 phead->pnext = NULL;
+		phead -> pnext = NULL;
+		phead = NULL;
 	}
 	return phead;
-}
- 
-void input(struct node *phead)
+}*/
+
+struct node *input()
 {
-	/*struct node *phead;                                    // 头结点 
+	struct node *phead;                                    // 头结点 
 	phead = (struct node *)malloc(sizeof(struct node));	   //phead的类型以及分配的空间 
 	if (!phead)
 	{
@@ -30,11 +31,11 @@ void input(struct node *phead)
 	else
 	{
 		phead->pnext = NULL;
-	}   */ 
+	}    
 	struct node *pfind = phead;
  	struct node *padd = NULL;                            //创造一个新节点 
  	padd = (struct node *)malloc(sizeof(struct node));
-    while (pfind -> pnext!=NULL)                          //遍历找尾节点 
+    while (pfind -> pnext != NULL)                          //遍历找尾节点 
  	{
  	pfind = pfind -> pnext;
  	}	
@@ -43,7 +44,7 @@ void input(struct node *phead)
     if (strcmp(padd->DATA.name,"0")==0) 
     { 
     printf("姓名不能为0,增加失败!\n"); 
-    //return(phead); 
+    return(phead); 
     } 
     else
     {
@@ -61,7 +62,7 @@ void input(struct node *phead)
  		pfind -> pnext = padd;
  		printf("联系人%s的信息已经录入\n",padd -> DATA.name); 
 	}
-//	return phead;
+	return(phead);
 }
 
 void del(struct node *phead)

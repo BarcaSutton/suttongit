@@ -5,8 +5,8 @@
 #include "addritem.h"
 #include "function.h"
 
-struct node *creatphead();
-void input(struct node *phead);                      //联系人的输入 
+//struct node *creatphead();
+struct node *input();                      //联系人的输入 
 void search();                     //查找联系人 
 void revise();                     //修改联系人 
 void del(struct node *phead);                        //删除联系人 
@@ -16,8 +16,8 @@ void menu();
 
 int main()
 { 
-	struct node *phead;
-	creatphead();
+	struct node *phead = NULL;
+//	creatphead();
 	int n;
 	menu();                            //菜单功能 
     scanf("%d",&n);                    //用户输入 
@@ -25,7 +25,7 @@ int main()
 	{
 		switch(n)
 		{
-			case 1:input(phead);
+			case 1:input();
 			break;
 			case 2:search();
 			break;
