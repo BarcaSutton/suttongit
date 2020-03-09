@@ -43,7 +43,7 @@ int CreateList(PNode Ph,int ID, char *Name, char *occu, char *tel, char *email)
 	return OK;
 }
 
-void display(PNode Ph)                //显示当前结点联系人创建情况 
+void displaycurrent(PNode Ph)                //显示当前结点联系人创建情况 
 {
 	if (Ph==NULL)
 	{
@@ -102,6 +102,21 @@ void del(PNode phead,char *Name)
 	}
 }
 
+//显示所有已经创建的联系人 
+void display_record(PNode Ph)
+{
+	if (Ph == NULL)
+	{
+		return;
+	}
+	PNode ptemp = Ph->pnext ;
+	while (ptemp)
+	{
+		printf("编号：%d 姓名：%s 职业：%s 电话：%s 邮箱：%s\n",ptemp->ID ,ptemp->Name ,ptemp->occu ,ptemp->tel,ptemp->email );
+		ptemp = ptemp->pnext ;
+	}
+}     
+
 void revise()
 {
 	
@@ -112,12 +127,13 @@ void sort()
 	
 }
 
-/*void readDATA(PNode phead)
+//从文件中读数据到链表中 
+void readDATA(PNode phead)
 {
 	int count; 
 	PNode pfind = phead;
 	PNode padd =NULL;
-	FILE * fp = NULL;                                //一个文件指针 
+	FILE *fp = NULL;                                //一个文件指针 
     fp = fopen("data.txt","r");                       //读取文件	
 	if (fp == NULL)
 	{
@@ -127,7 +143,7 @@ void sort()
 	while (1)
 	{
 		padd = (PNode)malloc(sizeof(Node)/sizeof(char));	  //建立一个新指针 
-		fscanf(fp,"%d%s%s%s%s",&padd ->ID,padd -> name,padd ->occu,padd ->tel,padd ->email); 
+		fscanf(fp,"%d%s%s%s%s",&padd ->ID,padd -> Name,padd ->occu,padd ->tel,padd ->email); 
 		padd ->pnext = NULL;
 		if (feof(fp))                       //判断是不是到末尾 
 		{
@@ -140,18 +156,21 @@ void sort()
 	fclose(fp);
 }    
 
+//将链表中的数据写入data.txt中 
 void writeDATA(PNode phead)
 {
  	PNode pfind = phead -> pnext;
- 	FILE * fp = NULL;                                //一个文件指针 
+ 	FILE *fp = NULL;                                //一个文件指针 
 	fp = fopen("data.txt","w");
 	while (pfind != NULL)                      //遍历链表 
 	{
-		fprintf(fp,"%d%s%s%s%s",&pfind ->ID,pfind ->name,pfind ->occu,pfind ->tel,pfind ->email) ;
+		fprintf(fp,"%d%s%s%s%s",&pfind ->ID,pfind ->Name,pfind ->occu,pfind ->tel,pfind ->email) ;
 		pfind = pfind -> pnext; 
 	}
 	fclose(fp);
-} */
+	printf("系统已退出！\n");
+	exit(0); 
+}  
  
 void menu()
 {
@@ -164,7 +183,7 @@ void menu()
 	printf("\t\t|                 3.revise record                |\n");
 	printf("\t\t|                 4.del    record                |\n");
 	printf("\t\t|                 5.sort   record                |\n");
-	printf("\t\t|                 6.display                      |\n");
+	printf("\t\t|                 6.display record               |\n");
 	printf("\t\t|------------------------------------------------|\n\n");
-	printf("\t\t\t  choose(0-6):");
+	printf("\t\t\t  choose(0-6):\n");
 }

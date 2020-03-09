@@ -10,16 +10,9 @@
 #define ERROR        -1
 #define MALLOC_ERROR -2 
 
- //struct node *input();                               //联系人的输入 
-void search();                                      //查找联系人 
-void revise();                                      //修改联系人 
-void del(PNode phead,char *Name);                       //删除联系人 
-void sort();                                        //排序联系人 
-void display(PNode phead);                   //显示联系人 
-void menu();
-
 int main()
 { 
+	int count;
 	int ID; 
 	char Name[10];
 	char occu[10]; 
@@ -37,41 +30,43 @@ int main()
 	{
 		phead -> pnext = NULL;
 	}
+//	readDATA(phead);
+//	printf("当前有%d个联系人",count);
 	int n;
 	menu();                            //菜单功能 
-    scanf("%d",&n);                    //用户输入 
+    readDATA(phead);
+	printf("当前有%d个联系人,choose(0-6):",count);
+	scanf("%d",&n);                    //用户输入 
 	while(1) 
 	{
 		switch(n)
 		{
 		case 1: 
-		//if (phead)
-	//	{
-			if (CreateList(phead, ID, Name, occu, tel, email) != OK)
+				if (CreateList(phead, ID, Name, occu, tel, email) != OK)
             	{
                 	return ERROR;
                 }
-                    display(phead); 
-      //  }
-			break;
+                    displaycurrent(phead);            //显示创建联系人是否成功 
+				break;
 		case 2: printf("请输入您要查找的联系人：\n");
 				scanf("%s",Name);
 				search(phead,Name);
 				break;
 		case 3:revise();
 				break;
-		case 4: printf("请输入您要删除的联系人：\n");
+		case 4:printf("请输入您要删除的联系人姓名：\n");
 				scanf("%s",Name);
 				del(phead,Name);
 				break;
-//			case 5:sort();
-//			break;
-//			case 6:display(phead);
-//			break;
-//			case 0:writeDATA(phead);
-			break;
-			default:
-			break;
+		case 5:sort();
+				break;
+ 	    case 6:printf("您的通讯录联系人信息如下：\n");
+		    	display_record(phead);
+ 				break;
+ 		case 0:writeDATA(phead);
+				break;
+		default:
+				break;
 		}
 		getch();
 		menu();
