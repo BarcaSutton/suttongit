@@ -42,38 +42,6 @@ int CreateList(PNode Ph,int ID, char *Name, char *occu, char *tel, char *email)
 	printf("联系人%s的信息已经录入\n",pfind->Name); 
 	return OK;
 }
- 
-/*void del(PNode phead)
-{
-	char delname[10];                                  //要删除的联系人名字 
-	PNode p1 = phead;
-	PNode p2 = phead -> pnext;             //定义指针p1和p2方便查找 
-	PNode p3 = NULL;                       //定义p3作为一个临时的指针 
-	printf("请输入要删除的联系人名字:\n");
-	scanf("%s",delname);
-	
-	while (p2 != NULL)
-	{
-		if (strcmp(p2 -> DATA.name,delname)==0)                  //判断删除的名字是否有匹配项 
-		{
-			break;
-		}
-		p1 = p1 -> pnext;
-		p2 = p2 -> pnext; 
-	 } 
-	 if (p2 == NULL)
-	 {
-	 	printf("抱歉，无此联系人记录\n");
-	 }
-	 else
-	 {
-	 	p3 = p2 -> pnext;
-	 	free(p2);
-	 	p2 = NULL;
-	 	p1 -> pnext = p3;
-	 }
-	  
-}*/
 
 void search()
 {

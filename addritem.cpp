@@ -45,15 +45,12 @@ int main()
 		switch(n)
 		{
 			case 1: if (phead)
-					{
+				{
 					if (CreateList(phead, ID, Name, occu, tel, email) != OK)
- {
-  return ERROR;
- }
- }
-//display(phead);                       //打印当前好友创建信息
-//phead = SelectSort(Phead);        //创建完成就进行排序,防止后面程序出
-
+                    {
+                     return ERROR;
+                    }
+                }
 			break;
 			case 2:search();
 			break;
