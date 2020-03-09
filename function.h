@@ -14,7 +14,7 @@ typedef struct node
 typedef Node *PNode;
 
 int CreateList(PNode Ph,int ID, char *Name, char *occu, char *tel, char *email);   //联系人的添加函数 
-void search();                                     //查找联系人函数 
+void search(PNode phead,char *Name);                                     //查找联系人函数 
 void revise();                                     //修改联系人函数 
 void del(PNode phead);                             //删除联系人函数 
 void sort();                                       //排序联系人函数 

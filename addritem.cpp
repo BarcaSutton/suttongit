@@ -52,7 +52,10 @@ int main()
                     }
                 }
 			break;
-			case 2:search();
+			case 2: printf("请输入您要查找的联系人：\n");
+					scanf("%s",Name);
+					search(phead,Name);
+					break;
 			break;
 			case 3:revise();
 			break;

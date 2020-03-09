@@ -43,9 +43,25 @@ int CreateList(PNode Ph,int ID, char *Name, char *occu, char *tel, char *email)
 	return OK;
 }
 
-void search()
+void search(PNode phead,char *Name)
 {
-	
+	PNode p1 = phead;
+	PNode p2 = NULL;
+	while (p1!=NULL&&(p1->pnext)!=NULL)
+	{
+		p2 = p1->pnext;
+		if (p2=NULL&&strcmp(p2->Name,Name)==0)
+		{
+			printf("您查找的联系人信息如下：\n");
+			printf("编号:%d 姓名：%s职业：%s 电话：%s 邮箱：%s ",p2->ID,p2->Name,p2->occu,p2->tel,p2->email);
+			return;
+		}
+		else if (p2->pnext==NULL&&strcmp(p2->Name,Name)!=0)
+		{
+			printf("您的通讯录无该联系人！\n");
+		}
+		p1=p1->pnext; 
+	}
 }
 
 void revise()
