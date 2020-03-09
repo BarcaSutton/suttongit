@@ -43,7 +43,7 @@ int CreateList(PNode Ph,int ID, char *Name, char *occu, char *tel, char *email)
 	return OK;
 }
 
-void display(PNode Ph)
+void display(PNode Ph)                //显示当前结点联系人创建情况 
 {
 	if (Ph==NULL)
 	{
@@ -59,6 +59,7 @@ void display(PNode Ph)
 		ptemp =ptemp->pnext;	
 	} 	 
 }
+ 
 void search(PNode phead,char *Name)
 {
 	PNode p1 = phead;
@@ -69,14 +70,35 @@ void search(PNode phead,char *Name)
 		if (p2!=NULL&&strcmp(p2->Name,Name)==0)
 		{
 			printf("您查找的联系人信息如下：\n");
-			printf("编号:%d 姓名：%s职业：%s 电话：%s 邮箱：%s ",p2->ID,p2->Name,p2->occu,p2->tel,p2->email);
+			printf("编号:%d 姓名：%s 职业：%s 电话：%s 邮箱：%s ",p2->ID,p2->Name,p2->occu,p2->tel,p2->email);
 			return;
 		}
-		else if (p2->pnext==NULL&&strcmp(p2->Name,Name)!=0)
+		else if (p2->pnext == NULL && strcmp(p2->Name,Name)!=0)
 		{
 			printf("您的通讯录无该联系人！\n");
 		}
-		p1=p1->pnext; 
+		p1 = p1->pnext; 
+	}
+}
+
+void del(PNode phead,char *Name)
+{
+	PNode p1 = phead;
+	PNode p2 = NULL;
+	while (p1!=NULL && (p1->pnext)!=NULL)
+	{
+		p2 = p1->pnext ;
+		if (p2!=NULL && strcmp(p2->Name,Name)==0)
+		{
+			p1->pnext = p2->pnext ;
+			free(p2);
+			printf("该联系人已成功删除!\n");
+		}
+		else if (p2->pnext==NULL && strcmp(p2->Name,Name)!=0)
+		{
+			printf("您的通讯录无该联系人！\n");
+		}
+		p1=p1->pnext ;
 	}
 }
 

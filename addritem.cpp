@@ -13,7 +13,7 @@
  //struct node *input();                               //联系人的输入 
 void search();                                      //查找联系人 
 void revise();                                      //修改联系人 
-void del(PNode phead);                       //删除联系人 
+void del(PNode phead,char *Name);                       //删除联系人 
 void sort();                                        //排序联系人 
 void display(PNode phead);                   //显示联系人 
 void menu();
@@ -44,24 +44,26 @@ int main()
 	{
 		switch(n)
 		{
-			case 1: if (phead)
-				{
-					if (CreateList(phead, ID, Name, occu, tel, email) != OK)
-                    {
-                     return ERROR;
-                    }
-                    display(phead); 
+		case 1: 
+		//if (phead)
+	//	{
+			if (CreateList(phead, ID, Name, occu, tel, email) != OK)
+            	{
+                	return ERROR;
                 }
+                    display(phead); 
+      //  }
 			break;
-			case 2: printf("请输入您要查找的联系人：\n");
-					scanf("%s",Name);
-					search(phead,Name);
-					break;
-			break;
-			case 3:revise();
-			break;
-//			case 4:del(phead);
-//			break;
+		case 2: printf("请输入您要查找的联系人：\n");
+				scanf("%s",Name);
+				search(phead,Name);
+				break;
+		case 3:revise();
+				break;
+		case 4: printf("请输入您要删除的联系人：\n");
+				scanf("%s",Name);
+				del(phead,Name);
+				break;
 //			case 5:sort();
 //			break;
 //			case 6:display(phead);
