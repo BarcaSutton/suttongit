@@ -6,7 +6,7 @@ void search(PNode phead,char *Name);                                           /
 void revise();                                           //修改联系人 
 void del(PNode phead);                                   //删除联系人 
 void sort();                                             //排序联系人 
-void display(PNode phead);                               //显示联系人 
+void display(PNode Ph);                               //显示联系人 
 void menu(); 
 void readDATA(PNode phead); 
 void writeDATA(PNode phead);

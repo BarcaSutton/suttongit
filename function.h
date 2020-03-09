@@ -18,7 +18,7 @@ void search(PNode phead,char *Name);                                     //²éÕÒÁ
 void revise();                                     //ĞŞ¸ÄÁªÏµÈËº¯Êı 
 void del(PNode phead);                             //É¾³ıÁªÏµÈËº¯Êı 
 void sort();                                       //ÅÅĞòÁªÏµÈËº¯Êı 
-void display(PNode phead);                                    //ÏÔÊ¾ÁªÏµÈËº¯Êı 
+void display(PNode Ph);                                    //ÏÔÊ¾ÁªÏµÈËº¯Êı 
 void menu();                                       //Ö÷²Ëµ¥º¯Êı 
 void readDATA(PNode phead);                                   //´ÓÎÄ¼şÖĞ¶ÁÈ¡Êı¾İµ½Á´±íÖĞ 
 void writeDATA(PNode phead);                                 //°ÑÁ´±íÖĞÊı¾İĞ´ÈëdataÎÄ±¾Àï    

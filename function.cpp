@@ -43,6 +43,22 @@ int CreateList(PNode Ph,int ID, char *Name, char *occu, char *tel, char *email)
 	return OK;
 }
 
+void display(PNode Ph)
+{
+	if (Ph==NULL)
+	{
+		return;	
+	}
+	PNode ptemp = Ph->pnext;
+	while (ptemp)
+	{
+		if (ptemp->pnext==NULL)
+		{
+			printf("联系人%s 已成功创建！\n",ptemp->Name);
+		}
+		ptemp =ptemp->pnext;	
+	} 	 
+}
 void search(PNode phead,char *Name)
 {
 	PNode p1 = phead;
@@ -50,7 +66,7 @@ void search(PNode phead,char *Name)
 	while (p1!=NULL&&(p1->pnext)!=NULL)
 	{
 		p2 = p1->pnext;
-		if (p2=NULL&&strcmp(p2->Name,Name)==0)
+		if (p2!=NULL&&strcmp(p2->Name,Name)==0)
 		{
 			printf("您查找的联系人信息如下：\n");
 			printf("编号:%d 姓名：%s职业：%s 电话：%s 邮箱：%s ",p2->ID,p2->Name,p2->occu,p2->tel,p2->email);
@@ -73,11 +89,6 @@ void sort()
 {
 	
 }
-
-/*void display(PNode phead)
-{
-	 
-}*/
 
 /*void readDATA(PNode phead)
 {

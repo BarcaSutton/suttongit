@@ -3,9 +3,9 @@
 #include <stdlib.h>
 #include <conio.h>
 
-#include "addritem.h"
 #include "function.h"
-
+#include "addritem.h"
+ 
 #define OK            0
 #define ERROR        -1
 #define MALLOC_ERROR -2 
@@ -50,6 +50,7 @@ int main()
                     {
                      return ERROR;
                     }
+                    display(phead); 
                 }
 			break;
 			case 2: printf("请输入您要查找的联系人：\n");
