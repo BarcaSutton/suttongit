@@ -149,9 +149,43 @@ void revise(PNode phead,char *Name)
 	}
 }
 
-void sort()
+//将目前已有的联系人进行排序 
+void sort(PNode phead)
 {
-	 
+	PNode p1;
+	PNode p2;	 
+	PNode ptemp;
+	ptemp = (PNode)malloc(sizeof(Node));
+	p1 = phead->pnext ;
+	p2 = p1->pnext ;
+	while (p1!=NULL)
+	{
+		while (p2!=NULL)
+		{
+			if (strcmp (p1->Name ,p2->Name )>0)
+			{
+				strcpy(ptemp->Name ,p1->Name );
+				strcpy(p1->Name ,p2->Name );
+				strcpy(p2->Name ,ptemp->Name );
+				ptemp->ID = p1->ID;
+				p1->ID = p2->ID ;
+				p2->ID = ptemp->ID;
+				strcpy(ptemp->occu , p1->occu);
+				strcpy(p1->occu ,p2->occu);
+				strcpy(p2->occu , ptemp->occu);
+				strcpy(ptemp->tel , p1->tel);
+				strcpy(p1->tel ,p2->tel);
+				strcpy(p2->tel , ptemp->tel);
+				strcpy(ptemp->email , p1->email);
+				strcpy(p1->email , p2->email);
+				strcpy(p2->email,ptemp->email);
+				}
+			p2 = p2->pnext ; 
+		}
+		p2 = p1->pnext ;
+		p1 = p1->pnext ; 
+		printf("已经按照姓氏排序完成！\n");
+	}
 }
 
 //从文件中读数据到链表中 

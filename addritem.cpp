@@ -58,7 +58,7 @@ int main()
 				scanf("%s",Name);
 				del(phead,Name);
 				break;
-		case 5:sort();
+		case 5:sort(phead);
 				break;
  	    case 6:printf("您的通讯录联系人信息如下：\n");
 		    	display_record(phead);
