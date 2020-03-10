@@ -33,7 +33,7 @@ int CreateList(PNode Ph,int ID, char *Name, char *occu, char *tel, char *email)
 	scanf ("%s", pfind->email);
 
 	pfind->pnext = NULL;
-	PNode ptemp = Ph;                     //定义一个临时指针ptemp 
+	PNode ptemp = Ph;                          //定义一个临时指针ptemp 
 	while (ptemp->pnext)
 	{
 		ptemp=ptemp->pnext;
@@ -42,8 +42,8 @@ int CreateList(PNode Ph,int ID, char *Name, char *occu, char *tel, char *email)
 	printf("联系人%s的信息已经录入\n",pfind->Name); 
 	return OK;
 }
-
-void displaycurrent(PNode Ph)                //显示当前结点联系人创建情况 
+//显示当前结点联系人创建情况 
+void displaycurrent(PNode Ph)                  
 {
 	if (Ph==NULL)
 	{
@@ -81,6 +81,7 @@ void search(PNode phead,char *Name)
 	}
 }
 
+//删除联系人函数模块 
 void del(PNode phead,char *Name)
 {
 	PNode p1 = phead;
@@ -107,6 +108,7 @@ void display_record(PNode Ph)
 {
 	if (Ph == NULL)
 	{
+		printf("您的通讯录为空\n"); 
 		return;
 	}
 	PNode ptemp = Ph->pnext ;
@@ -184,54 +186,49 @@ void sort(PNode phead)
 		}
 		p2 = p1->pnext ;
 		p1 = p1->pnext ; 
-		printf("已经按照姓氏排序完成！\n");
 	}
+	printf("已经按照姓氏排序成功！\n");
 }
-
-//从文件中读数据到链表中 
+ 
+//从文件中读数据到链表中
 void readDATA(PNode phead)
-{
-	int count; 
+{ 
+	int count;
 	PNode pfind = phead;
 	PNode padd =NULL;
-	FILE *fp = NULL;                                //一个文件指针 
+	FILE *fp ;                                     //一个文件指针 
     fp = fopen("data.txt","r");                       //读取文件	
 	if (fp == NULL)
 	{
 		printf("文件读取失败\n");
-		return;	
 	} 
-	while (1)
+	while (!feof(fp))
 	{
-		padd = (PNode)malloc(sizeof(Node));	  //建立一个新指针 
-		fscanf(fp,"编号：%d 姓名：%s 职业：%s 电话：%s 邮箱：%s",&padd ->ID,padd -> Name,padd ->occu,padd ->tel,padd ->email); 
+		padd = (PNode)malloc(sizeof(Node));	                          //建立一个节点 
+		fscanf(fp,"编号：%d 姓名：%s 职业：%s 电话：%s 邮箱：%s\n",&padd ->ID,padd -> Name,padd ->occu,padd ->tel,padd ->email); 
 		padd ->pnext = NULL;
-		if (feof(fp))                       //判断是不是到末尾 
-		{
-		break; 
-		}
-	count++;
-	pfind -> pnext =padd;
-	pfind = pfind ->pnext;
+		pfind -> pnext =padd;
+		pfind = pfind ->pnext;
+		count++;
 	}
-//	printf("当前有%d个联系人,choose(0-6):",count);
-	fclose(fp);
-}    
+	printf("当前有%d个联系人，choose(0-6):\n",count) ;
+ 	fclose(fp);
+}  
 
-//将链表中的数据写入data.txt中 
+//把链表中数据写入data文本里  
 void writeDATA(PNode phead)
 {
- 	PNode pfind = phead -> pnext;
+	PNode pfind = phead -> pnext;
  	FILE *fp = NULL;                                //一个文件指针 
 	fp = fopen("data.txt","w");
-	while (pfind != NULL)                      //遍历链表 
+	while (pfind != NULL)                           //遍历链表 
 	{
-		fprintf(fp,"编号：%d 姓名：%s 职业：%s 电话：%s 邮箱：%s",&pfind ->ID,pfind ->Name,pfind ->occu,pfind ->tel,pfind ->email) ;
+		fprintf(fp,"编号：%d 姓名：%s 职业：%s 电话：%s 邮箱：%s\n",pfind ->ID,pfind ->Name,pfind ->occu,pfind ->tel,pfind ->email) ;
 		pfind = pfind -> pnext; 
 	}
 	fclose(fp);
 	printf("系统已退出！\n");
-	exit(0); 
+ 	exit(0); 
 }  
  
 void menu()

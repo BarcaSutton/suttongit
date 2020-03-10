@@ -11,7 +11,7 @@ typedef struct node
 	struct node *pnext;
 }Node;
 
-typedef Node *PNode;
+typedef Node* PNode;
 
 int CreateList(PNode Ph,int ID, char *Name, char *occu, char *tel, char *email);   //联系人的添加函数 
 void search(PNode phead,char *Name);                                     //查找联系人函数 

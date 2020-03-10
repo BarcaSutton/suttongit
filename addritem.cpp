@@ -12,7 +12,6 @@
 
 int main()
 { 
-	int count;
 	int ID; 
 	char Name[10];
 	char occu[10]; 
@@ -33,14 +32,12 @@ int main()
  	int n;
 	menu();                            //菜单功能 
     readDATA(phead);
- 	printf("当前有%d个联系人,choose(0-6):",count);
 	scanf("%d",&n);                    //用户输入 
 	while(1) 
 	{
 		switch(n)
 		{
-		case 1: 
-				if (CreateList(phead, ID, Name, occu, tel, email) != OK)
+		case 1: if (CreateList(phead, ID, Name, occu, tel, email) != OK)
             	{
                 	return ERROR;
                 }
@@ -60,9 +57,9 @@ int main()
 				break;
 		case 5:sort(phead);
 				break;
- 	    case 6:printf("您的通讯录联系人信息如下：\n");
+ 	    case 6:	printf("您的通讯录联系人信息如下：\n");
 		    	display_record(phead);
- 				break;
+				break;
  		case 0:writeDATA(phead);
 				break;
 		default:
