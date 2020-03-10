@@ -15,7 +15,7 @@ int CreateList(PNode Ph,int ID, char *Name, char *occu, char *tel, char *email)
 	{
 		return ERROR;
 	}
-	PNode pfind = (PNode)malloc(sizeof(Node)/sizeof(char));              //定义一个pfind并分配内存 
+	PNode pfind = (PNode)malloc(sizeof(Node));              //定义一个pfind并分配内存 
 	if (pfind == NULL)
 	{
 	return MALLOC_ERROR;
@@ -117,14 +117,41 @@ void display_record(PNode Ph)
 	}
 }     
 
-void revise()
+void revise(PNode phead,char *Name)
 {
-	
+ 	PNode p1 = phead;
+	PNode p2 = NULL;
+	while (p1!=NULL&&(p1->pnext)!=NULL)
+	{
+		p2 = p1->pnext;
+		if (p2!=NULL&&strcmp(p2->Name,Name)==0)
+		{
+			printf("您要修改的联系人信息如下：\n");
+			printf("编号:%d 姓名：%s 职业：%s 电话：%s 邮箱：%s \n",p2->ID,p2->Name,p2->occu,p2->tel,p2->email);
+		    printf("请您开始修改联系人信息！\n");
+			printf ("请输入联系人编号:  ");
+			scanf ("%d", &p2->ID);
+			printf ("请输入联系人姓名:  ");
+			scanf ("%s", p2->Name);
+			printf ("请输入联系人职业: ");
+			scanf ("%s", p2->occu);
+			printf ("请输入联系人电话: ");
+			scanf ("%s", p2->tel);
+			printf ("请输入联系人邮箱: ");
+			scanf ("%s", p2->email);
+			printf("联系人%s的信息修改成功！\n",p2->Name);
+		}
+		else if (p2->pnext == NULL && strcmp(p2->Name,Name)!=0)
+		{
+			printf("您的通讯录无该联系人！\n");
+		}
+		p1 = p1->pnext; 
+	}
 }
 
 void sort()
 {
-	
+	 
 }
 
 //从文件中读数据到链表中 
@@ -142,8 +169,8 @@ void readDATA(PNode phead)
 	} 
 	while (1)
 	{
-		padd = (PNode)malloc(sizeof(Node)/sizeof(char));	  //建立一个新指针 
-		fscanf(fp,"%d%s%s%s%s",&padd ->ID,padd -> Name,padd ->occu,padd ->tel,padd ->email); 
+		padd = (PNode)malloc(sizeof(Node));	  //建立一个新指针 
+		fscanf(fp,"编号：%d 姓名：%s 职业：%s 电话：%s 邮箱：%s",&padd ->ID,padd -> Name,padd ->occu,padd ->tel,padd ->email); 
 		padd ->pnext = NULL;
 		if (feof(fp))                       //判断是不是到末尾 
 		{
@@ -153,6 +180,7 @@ void readDATA(PNode phead)
 	pfind -> pnext =padd;
 	pfind = pfind ->pnext;
 	}
+//	printf("当前有%d个联系人,choose(0-6):",count);
 	fclose(fp);
 }    
 
@@ -164,7 +192,7 @@ void writeDATA(PNode phead)
 	fp = fopen("data.txt","w");
 	while (pfind != NULL)                      //遍历链表 
 	{
-		fprintf(fp,"%d%s%s%s%s",&pfind ->ID,pfind ->Name,pfind ->occu,pfind ->tel,pfind ->email) ;
+		fprintf(fp,"编号：%d 姓名：%s 职业：%s 电话：%s 邮箱：%s",&pfind ->ID,pfind ->Name,pfind ->occu,pfind ->tel,pfind ->email) ;
 		pfind = pfind -> pnext; 
 	}
 	fclose(fp);

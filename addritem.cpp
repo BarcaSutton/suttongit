@@ -20,7 +20,7 @@ int main()
 	char email[30];
 	
 	PNode phead;
-	phead = (PNode)malloc(sizeof(Node)/sizeof(char));	   //phead的类型以及分配的空间 
+	phead = (PNode)malloc(sizeof(Node));	   //phead的类型以及分配的空间 
 	if (phead == NULL)
 	{
 		printf("头节点创建失败\n");	
@@ -30,12 +30,10 @@ int main()
 	{
 		phead -> pnext = NULL;
 	}
-//	readDATA(phead);
-//	printf("当前有%d个联系人",count);
-	int n;
+ 	int n;
 	menu();                            //菜单功能 
     readDATA(phead);
-	printf("当前有%d个联系人,choose(0-6):",count);
+ 	printf("当前有%d个联系人,choose(0-6):",count);
 	scanf("%d",&n);                    //用户输入 
 	while(1) 
 	{
@@ -48,11 +46,13 @@ int main()
                 }
                     displaycurrent(phead);            //显示创建联系人是否成功 
 				break;
-		case 2: printf("请输入您要查找的联系人：\n");
+		case 2: printf("请输入您要查找的联系人姓名：\n");
 				scanf("%s",Name);
 				search(phead,Name);
 				break;
-		case 3:revise();
+		case 3:printf("请输入您要修改的联系人姓名：\n");
+				scanf("%s",Name);
+				revise(phead,Name);
 				break;
 		case 4:printf("请输入您要删除的联系人姓名：\n");
 				scanf("%s",Name);
