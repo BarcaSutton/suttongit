@@ -9,9 +9,9 @@
 #define MALLOC_ERROR -2 
  
 //创建联系人信息（通过尾插法创建链表） 
-int CreateList(PNode Ph,int ID, char *Name, char *occu, char *tel, char *email)         
+int CreateList(PNode phead,int ID, char *Name, char *occu, char *tel, char *email)         
 {
-	if (Ph == NULL)
+	if (phead == NULL)
 	{
 		return ERROR;
 	}
@@ -33,7 +33,7 @@ int CreateList(PNode Ph,int ID, char *Name, char *occu, char *tel, char *email)
 	scanf ("%s", pfind->email);
 
 	pfind->pnext = NULL;
-	PNode ptemp = Ph;                          //定义一个临时指针ptemp 
+	PNode ptemp = phead;                          //定义一个临时指针ptemp 
 	while (ptemp->pnext)
 	{
 		ptemp=ptemp->pnext;
@@ -43,13 +43,13 @@ int CreateList(PNode Ph,int ID, char *Name, char *occu, char *tel, char *email)
 	return OK;
 }
 //显示当前结点联系人创建情况 
-void displaycurrent(PNode Ph)                  
+void displaycurrent(PNode phead)                  
 {
-	if (Ph==NULL)
+	if (phead==NULL)
 	{
 		return;	
 	}
-	PNode ptemp = Ph->pnext;
+	PNode ptemp = phead->pnext;
 	while (ptemp)
 	{
 		if (ptemp->pnext==NULL)
@@ -104,14 +104,14 @@ void del(PNode phead,char *Name)
 }
 
 //显示所有已经创建的联系人 
-void display_record(PNode Ph)
+void display_record(PNode phead)
 {
-	if (Ph == NULL)
+	if (phead == NULL)
 	{
 		printf("您的通讯录为空\n"); 
 		return;
 	}
-	PNode ptemp = Ph->pnext ;
+	PNode ptemp = phead->pnext ;
 	while (ptemp)
 	{
 		printf("编号：%d 姓名：%s 职业：%s 电话：%s 邮箱：%s\n",ptemp->ID ,ptemp->Name ,ptemp->occu ,ptemp->tel,ptemp->email );
@@ -187,7 +187,7 @@ void sort(PNode phead)
 		p2 = p1->pnext ;
 		p1 = p1->pnext ; 
 	}
-	printf("已经按照姓氏排序成功！\n");
+	printf("已经按照姓氏排序成功！按任意键继续！\n");
 }
  
 //从文件中读数据到链表中
@@ -211,7 +211,7 @@ void readDATA(PNode phead)
 		pfind = pfind ->pnext;
 		count++;
 	}
-	printf("当前有%d个联系人，choose(0-6):\n",count) ;
+	printf("当前有%d个联系人，请选择功能:\n",count) ;
  	fclose(fp);
 }  
 
@@ -227,7 +227,7 @@ void writeDATA(PNode phead)
 		pfind = pfind -> pnext; 
 	}
 	fclose(fp);
-	printf("系统已退出！\n");
+	printf("系统已退出！欢迎使用！\n");
  	exit(0); 
 }  
  
@@ -236,13 +236,13 @@ void menu()
 	system("cls");
 	printf("\n\n\n\n\n\n");
 	printf("\t\t|---------------------通讯录---------------------|\n");
-	printf("\t\t|                 0.preserve & exit              |\n");
-	printf("\t\t|                 1.input  record                |\n");
-	printf("\t\t|                 2.search record                |\n");
-	printf("\t\t|                 3.revise record                |\n");
-	printf("\t\t|                 4.del    record                |\n");
-	printf("\t\t|                 5.sort   record                |\n");
-	printf("\t\t|                 6.display record               |\n");
+	printf("\t\t|                 0.保存并退出                   |\n");
+	printf("\t\t|                 1.添加联系人信息               |\n");
+	printf("\t\t|                 2.查找联系人信息               |\n");
+	printf("\t\t|                 3.修改联系人信息               |\n");
+	printf("\t\t|                 4.删除联系人信息               |\n");
+	printf("\t\t|                 5.排序联系人信息               |\n");
+	printf("\t\t|                 6.显示联系人信息               |\n");
 	printf("\t\t|------------------------------------------------|\n\n");
-	printf("\t\t\t  choose(0-6):\n");
+	printf("\t\t\t  请选择功能(0-6):\n");
 }
