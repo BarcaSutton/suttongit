@@ -9,20 +9,20 @@
 #define MALLOC_ERROR -2 
  
 //创建联系人信息（通过尾插法创建链表） 
-int CreateList(PNode phead,int ID, char *Name, char *occu, char *tel, char *email)         
+int CreateList(PNode phead,char *ID, char *Name, char *occu, char *tel, char *email)         
 {
-	if (phead == NULL)
+	if (phead == NULL)                                      //判断头指针是否为空 
 	{
-		return ERROR;
+		return ERROR;                                        
 	}
 	PNode pfind = (PNode)malloc(sizeof(Node));              //定义一个pfind并分配内存 
 	if (pfind == NULL)
 	{
 	return MALLOC_ERROR;
-	}
-	printf("添加联系人\n");
+	} 
+	printf("添加联系人\n");                                    //逐步添加联系人信息 
 	printf ("请输入联系人编号:  ");
-	scanf ("%d", &pfind->ID);
+	scanf ("%s", pfind->ID);
 	printf ("请输入联系人姓名:  ");
 	scanf ("%s", pfind->Name);
 	printf ("请输入联系人职业: ");
@@ -59,18 +59,65 @@ void displaycurrent(PNode phead)
 		ptemp =ptemp->pnext;	
 	} 	 
 }
- 
-void search(PNode phead,char *Name)
+
+//分类查找联系人 
+void search(PNode phead)
 {
+	int m = 0;
+	int n = 0; 
 	PNode p1 = phead;
 	PNode p2 = NULL;
+	printf("\t\t┌-------------------------------------┐\n");
+	printf("\t\t│          请选择查询方式:            │\n");
+	printf("\t\t│     1.通过编号      2.通过姓名      │\n");
+	printf("\t\t│     3.通过职业      4.通过电话号    │\n");
+	printf("\t\t│     5.通过邮箱      6.                │\n");
+	printf("\t\t└-------------------------------------┘\n");
+	scanf("\t\t%d",&m);                              //选择查询方式 
+	do
+	{
+		n = 0;
+		if (m!=1&&m!=2&&m!=3&&m!=4&&m!=5&&m!=6)
+		{
+			n = 1;
+			printf("查询方式错误，请重新输入（0-6）：");
+			scanf("%d",&m);           
+		} 
+    }while(n);
+		
+	if(m==1)
+{   
+	char ID[10];
+	printf("请输入您要查找的联系人编号：\n");
+	scanf("%s",ID);
+	while (p1!=NULL&&(p1->pnext)!=NULL)
+	{
+		p2 = p1->pnext;
+		if (p2!=NULL&&strcmp(p2->ID,ID)==0)
+		{
+			printf("您查找的联系人信息如下：\n");
+			printf("编号:%s 姓名：%s 职业：%s 电话：%s 邮箱：%s ",p2->ID,p2->Name,p2->occu,p2->tel,p2->email);
+			return;
+		}
+		else if (p2->pnext == NULL && strcmp(p2->ID,ID)!=0)
+		{
+			printf("您的通讯录无该联系人！\n");
+		}
+		p1 = p1->pnext; 
+	}
+}	
+	if(m==2)
+{   
+	char Name[10];
+	printf("请输入您要查找的联系人姓名：\n");
+	scanf("%s",Name);
 	while (p1!=NULL&&(p1->pnext)!=NULL)
 	{
 		p2 = p1->pnext;
 		if (p2!=NULL&&strcmp(p2->Name,Name)==0)
 		{
 			printf("您查找的联系人信息如下：\n");
-			printf("编号:%d 姓名：%s 职业：%s 电话：%s 邮箱：%s ",p2->ID,p2->Name,p2->occu,p2->tel,p2->email);
+			printf("编号:%s 姓名：%s 职业：%s 电话：%s 邮箱：%s ",p2->ID,p2->Name,p2->occu,p2->tel,p2->email);
 			return;
 		}
 		else if (p2->pnext == NULL && strcmp(p2->Name,Name)!=0)
@@ -81,9 +128,82 @@ void search(PNode phead,char *Name)
 	}
 }
 
+if(m==3)
+{   
+	char occu[10];
+	printf("请输入您要查找的联系人职业：\n");
+	scanf("%s",occu);
+	while (p1!=NULL&&(p1->pnext)!=NULL)
+	{
+		p2 = p1->pnext;
+		if (p2!=NULL&&strcmp(p2->occu,occu)==0)
+		{
+			printf("您查找的联系人信息如下：\n");
+			printf("编号:%s 姓名：%s 职业：%s 电话：%s 邮箱：%s ",p2->ID,p2->Name,p2->occu,p2->tel,p2->email);
+			return;
+		}
+		else if (p2->pnext == NULL && strcmp(p2->occu,occu)!=0)
+		{
+			printf("您的通讯录无该联系人！\n");
+		}
+		p1 = p1->pnext; 
+	}
+}
+
+if(m==4)
+{   
+	char tel[15];
+	printf("请输入您要查找的联系人电话：\n");
+	scanf("%s",tel);
+	while (p1!=NULL&&(p1->pnext)!=NULL)
+	{
+		p2 = p1->pnext;
+		if (p2!=NULL&&strcmp(p2->tel,tel)==0)
+		{
+			printf("您查找的联系人信息如下：\n");
+			printf("编号:%s 姓名：%s 职业：%s 电话：%s 邮箱：%s ",p2->ID,p2->Name,p2->occu,p2->tel,p2->email);
+			return;
+		}
+		else if (p2->pnext == NULL && strcmp(p2->tel,tel)!=0)
+		{
+			printf("您的通讯录无该联系人！\n");
+		}
+		p1 = p1->pnext; 
+	}
+}
+
+if(m==5)
+{   
+	char email[30];
+	printf("请输入您要查找的联系人电话：\n");
+	scanf("%s",email);
+	while (p1!=NULL&&(p1->pnext)!=NULL)
+	{
+		p2 = p1->pnext;
+		if (p2!=NULL&&strcmp(p2->email,email)==0)
+		{
+			printf("您查找的联系人信息如下：\n");
+			printf("编号:%s 姓名：%s 职业：%s 电话：%s 邮箱：%s ",p2->ID,p2->Name,p2->occu,p2->tel,p2->email);
+			return;
+		}
+		else if (p2->pnext == NULL && strcmp(p2->email,email)!=0)
+		{
+			printf("您的通讯录无该联系人！\n");
+		}
+		p1 = p1->pnext; 
+	}
+}
+
+if (m==6)
+{
+	return;
+}
+}
+  
+
 //删除联系人函数模块 
 void del(PNode phead,char *Name)
-{
+{	
 	PNode p1 = phead;
 	PNode p2 = NULL;
 	while (p1!=NULL && (p1->pnext)!=NULL)
@@ -114,11 +234,11 @@ void display_record(PNode phead)
 	PNode ptemp = phead->pnext ;
 	while (ptemp)
 	{
-		printf("编号：%d 姓名：%s 职业：%s 电话：%s 邮箱：%s\n",ptemp->ID ,ptemp->Name ,ptemp->occu ,ptemp->tel,ptemp->email );
+		printf("编号：%s 姓名：%s 职业：%s 电话：%s 邮箱：%s\n",ptemp->ID ,ptemp->Name ,ptemp->occu ,ptemp->tel,ptemp->email );
 		ptemp = ptemp->pnext ;
 	}
 }     
-
+//修改联系人函数 
 void revise(PNode phead,char *Name)
 {
  	PNode p1 = phead;
@@ -129,17 +249,17 @@ void revise(PNode phead,char *Name)
 		if (p2!=NULL&&strcmp(p2->Name,Name)==0)
 		{
 			printf("您要修改的联系人信息如下：\n");
-			printf("编号:%d 姓名：%s 职业：%s 电话：%s 邮箱：%s \n",p2->ID,p2->Name,p2->occu,p2->tel,p2->email);
+			printf("编号:%s 姓名：%s 职业：%s 电话：%s 邮箱：%s \n",p2->ID,p2->Name,p2->occu,p2->tel,p2->email);
 		    printf("请您开始修改联系人信息！\n");
-			printf ("请输入联系人编号:  ");
-			scanf ("%d", &p2->ID);
-			printf ("请输入联系人姓名:  ");
+			printf ("请输入新的联系人编号:  ");
+			scanf ("%s", p2->ID);
+			printf ("请输入新的联系人姓名:  ");
 			scanf ("%s", p2->Name);
-			printf ("请输入联系人职业: ");
+			printf ("请输入新的联系人职业: ");
 			scanf ("%s", p2->occu);
-			printf ("请输入联系人电话: ");
+			printf ("请输入新的联系人电话: ");
 			scanf ("%s", p2->tel);
-			printf ("请输入联系人邮箱: ");
+			printf ("请输入新的联系人邮箱: ");
 			scanf ("%s", p2->email);
 			printf("联系人%s的信息修改成功！\n",p2->Name);
 		}
@@ -169,10 +289,10 @@ void sort(PNode phead)
 				strcpy(ptemp->Name ,p1->Name );
 				strcpy(p1->Name ,p2->Name );
 				strcpy(p2->Name ,ptemp->Name );
-				ptemp->ID = p1->ID;
-				p1->ID = p2->ID ;
-				p2->ID = ptemp->ID;
-				strcpy(ptemp->occu , p1->occu);
+				strcpy(ptemp->ID ,p1->ID);
+				strcpy(p1->ID ,p2->ID);
+				strcpy(p2->ID ,ptemp->ID);
+				strcpy(ptemp->occu,p1->occu);
 				strcpy(p1->occu ,p2->occu);
 				strcpy(p2->occu , ptemp->occu);
 				strcpy(ptemp->tel , p1->tel);
@@ -187,7 +307,7 @@ void sort(PNode phead)
 		p2 = p1->pnext ;
 		p1 = p1->pnext ; 
 	}
-	printf("已经按照姓氏排序成功！按任意键继续！\n");
+	printf("已经按照姓氏升降排序成功！按任意键继续！\n");
 }
  
 //从文件中读数据到链表中
@@ -205,7 +325,7 @@ void readDATA(PNode phead)
 	while (!feof(fp))
 	{
 		padd = (PNode)malloc(sizeof(Node));	                          //建立一个节点 
-		fscanf(fp,"编号：%d 姓名：%s 职业：%s 电话：%s 邮箱：%s\n",&padd ->ID,padd -> Name,padd ->occu,padd ->tel,padd ->email); 
+		fscanf(fp,"编号：%s 姓名：%s 职业：%s 电话：%s 邮箱：%s\n",padd ->ID,padd -> Name,padd ->occu,padd ->tel,padd ->email); 
 		padd ->pnext = NULL;
 		pfind -> pnext =padd;
 		pfind = pfind ->pnext;
@@ -223,7 +343,7 @@ void writeDATA(PNode phead)
 	fp = fopen("data.txt","w");
 	while (pfind != NULL)                           //遍历链表 
 	{
-		fprintf(fp,"编号：%d 姓名：%s 职业：%s 电话：%s 邮箱：%s\n",pfind ->ID,pfind ->Name,pfind ->occu,pfind ->tel,pfind ->email) ;
+		fprintf(fp,"编号：%s 姓名：%s 职业：%s 电话：%s 邮箱：%s\n",pfind ->ID,pfind ->Name,pfind ->occu,pfind ->tel,pfind ->email) ;
 		pfind = pfind -> pnext; 
 	}
 	fclose(fp);
@@ -232,7 +352,7 @@ void writeDATA(PNode phead)
 }  
  
 void menu()
-{
+ {
 	system("cls");
 	printf("\n\n\n\n\n\n");
 	printf("\t\t|---------------------通讯录---------------------|\n");
@@ -245,4 +365,4 @@ void menu()
 	printf("\t\t|                 6.显示联系人信息               |\n");
 	printf("\t\t|------------------------------------------------|\n\n");
 	printf("\t\t\t  请选择功能(0-6):\n");
-}
+ }

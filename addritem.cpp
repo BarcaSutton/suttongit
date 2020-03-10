@@ -12,7 +12,8 @@
 
 int main()
 { 
-	int ID; 
+	int n = 0;                               //用于储存用户的选择 
+	char ID[10]; 
 	char Name[10];
 	char occu[10]; 
 	char tel[15];
@@ -29,7 +30,7 @@ int main()
 	{
 		phead -> pnext = NULL;
 	}
- 	int n;
+ 	
 	menu();                            //菜单功能 
     readDATA(phead);
 	scanf("%d",&n);                    //用户输入 
@@ -43,9 +44,7 @@ int main()
                 }
                     displaycurrent(phead);            //显示创建联系人是否成功 
 				break;
-		case 2: printf("请输入您要查找的联系人姓名：\n");
-				scanf("%s",Name);
-				search(phead,Name);
+		case 2: search(phead);
 				break;
 		case 3:printf("请输入您要修改的联系人姓名：\n");
 				scanf("%s",Name);
@@ -62,7 +61,7 @@ int main()
 				break;
  		case 0:writeDATA(phead);
 				break;
-		default:
+		default:   
 				break;
 		}
 		getch();
