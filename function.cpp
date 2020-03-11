@@ -7,20 +7,54 @@
 #define OK            0
 #define ERROR        -1
 #define MALLOC_ERROR -2 
- 
-//创建联系人信息（通过尾插法创建链表） 
-int CreateList(PNode phead,char *ID, char *Name, char *occu, char *tel, char *email)         
+
+//判断传入的指针是否为空 
+/*void judge_empty(PNode p) 
 {
-	if (phead == NULL)                                      //判断头指针是否为空 
+	if (p == NULL)
 	{
-		return ERROR;                                        
+		printf("指针为空！");
+		exit(0); 
 	}
-	PNode pfind = (PNode)malloc(sizeof(Node));              //定义一个pfind并分配内存 
+}*/
+// (通过尾插法创建链表） 
+int CreateList(PNode p)         
+{
+	PNode phead;                                                    
+	PNode pfind;
+	phead  = (PNode)malloc(sizeof(Node));	                  //phead的类型以及分配的空间 
+	phead ->pnext = NULL;
+	
+	if (phead == NULL)                                         //判断头指针是否为空 
+	{
+		return ERROR;
+	}
+	
+	pfind = (PNode)malloc(sizeof(Node));                      //定义一个pfind并分配内存 
 	if (pfind == NULL)
 	{
-	return MALLOC_ERROR;
-	} 
-	printf("添加联系人\n");                                    //逐步添加联系人信息 
+		return MALLOC_ERROR;
+	}
+	pfind->pnext = NULL;
+	PNode ptemp = phead;                                     //定义一个临时指针ptemp 
+	while (ptemp->pnext )                                     //找最后一个结点 
+	{
+		ptemp=ptemp->pnext;
+	}
+	ptemp->pnext = pfind; 
+	return OK;
+}
+
+void input(PNode phead)
+{
+    CreateList(phead);
+	PNode pfind = (PNode)malloc(sizeof(Node));                     //定义一个pfind并分配内存 
+ 	if (pfind == NULL)                                             //判断头指针是否为空 
+	{ 
+		exit(0);
+	}
+  
+	printf("添加联系人\n");                                         //逐步添加联系人信息 
 	printf ("请输入联系人编号:  ");
 	scanf ("%s", pfind->ID);
 	printf ("请输入联系人姓名:  ");
@@ -30,27 +64,26 @@ int CreateList(PNode phead,char *ID, char *Name, char *occu, char *tel, char *em
 	printf ("请输入联系人电话: ");
 	scanf ("%s", pfind->tel);
 	printf ("请输入联系人邮箱: ");
-	scanf ("%s", pfind->email);
-
+	scanf ("%s", pfind->email);      
 	pfind->pnext = NULL;
-	PNode ptemp = phead;                          //定义一个临时指针ptemp 
-	while (ptemp->pnext)
+	PNode ptemp = phead ;                                         //定义一个临时指针ptemp来指向头指针 
+	while (ptemp->pnext )
 	{
 		ptemp=ptemp->pnext;
 	}
-	ptemp->pnext = pfind;
-	printf("联系人%s的信息已经录入\n",pfind->Name); 
-	return OK;
+	ptemp->pnext = pfind; 
 }
+
 //显示当前结点联系人创建情况 
 void displaycurrent(PNode phead)                  
 {
-	if (phead==NULL)
+	PNode ptemp; 
+	if (phead ==NULL)
 	{
 		return;	
 	}
-	PNode ptemp = phead->pnext;
-	while (ptemp)
+	ptemp = phead ->pnext;  
+	while (ptemp)                                                 //判断联系人是否创建成功 
 	{
 		if (ptemp->pnext==NULL)
 		{
@@ -60,24 +93,25 @@ void displaycurrent(PNode phead)
 	} 	 
 }
 
-//分类查找联系人 
+//实现分类查找联系人 
 void search(PNode phead)
 {
+//	judge_empty(phead);
 	int m = 0;
 	int n = 0; 
-	PNode p1 = phead;
+	PNode p1 = phead;                                                             //p1指向头结点 
 	PNode p2 = NULL;
-	printf("\t\t┌-------------------------------------┐\n");
+	printf("\t\t┌-------------------------------------┐\n");                    //查询方式菜单 
 	printf("\t\t│          请选择查询方式:            │\n");
 	printf("\t\t│     1.通过编号      2.通过姓名      │\n");
 	printf("\t\t│     3.通过职业      4.通过电话号    │\n");
-	printf("\t\t│     5.通过邮箱      6.                │\n");
+	printf("\t\t│     5.通过邮箱      6.返回          │\n");
 	printf("\t\t└-------------------------------------┘\n");
-	scanf("\t\t%d",&m);                              //选择查询方式 
+	scanf("\t\t%d",&m);                                                           //选择查询方式 
 	do
 	{
 		n = 0;
-		if (m!=1&&m!=2&&m!=3&&m!=4&&m!=5&&m!=6)
+		if (m!=1&&m!=2&&m!=3&&m!=4&&m!=5&&m!=6)                                   //判断输入数字是否属于0-6 
 		{
 			n = 1;
 			printf("查询方式错误，请重新输入（0-6）：");
@@ -85,12 +119,12 @@ void search(PNode phead)
 		} 
     }while(n);
 		
-	if(m==1)
+if(m==1)                                                           
 {   
-	char ID[10];
+	char ID[10];                                                          //定义要输入的编号 
 	printf("请输入您要查找的联系人编号：\n");
 	scanf("%s",ID);
-	while (p1!=NULL&&(p1->pnext)!=NULL)
+	while (p1!=NULL&&(p1->pnext)!=NULL)                                  
 	{
 		p2 = p1->pnext;
 		if (p2!=NULL&&strcmp(p2->ID,ID)==0)
@@ -106,7 +140,8 @@ void search(PNode phead)
 		p1 = p1->pnext; 
 	}
 }	
-	if(m==2)
+
+if(m==2)
 {   
 	char Name[10];
 	printf("请输入您要查找的联系人姓名：\n");
@@ -194,7 +229,7 @@ if(m==5)
 	}
 }
 
-if (m==6)
+if (m==6)                               //返回选项 
 {
 	return;
 }
@@ -202,8 +237,12 @@ if (m==6)
   
 
 //删除联系人函数模块 
-void del(PNode phead,char *Name)
+void del(PNode phead)
 {	
+//	judge_empty(phead);
+	char Name[10]; 
+	printf("请输入您要删除的联系人姓名：\n");
+	scanf("%s",Name);
 	PNode p1 = phead;
 	PNode p2 = NULL;
 	while (p1!=NULL && (p1->pnext)!=NULL)
@@ -229,19 +268,25 @@ void display_record(PNode phead)
 	if (phead == NULL)
 	{
 		printf("您的通讯录为空\n"); 
-		return;
+		exit(0);
 	}
-	PNode ptemp = phead->pnext ;
+	printf("您的通讯录联系人信息如下：\n");
+	PNode ptemp = phead ->pnext ;
 	while (ptemp)
 	{
 		printf("编号：%s 姓名：%s 职业：%s 电话：%s 邮箱：%s\n",ptemp->ID ,ptemp->Name ,ptemp->occu ,ptemp->tel,ptemp->email );
 		ptemp = ptemp->pnext ;
 	}
 }     
+
 //修改联系人函数 
-void revise(PNode phead,char *Name)
+void revise(PNode phead)
 {
- 	PNode p1 = phead;
+ 	
+	char Name[10]; 
+	printf("请输入您要修改的联系人姓名：\n");
+	scanf("%s",Name);
+	PNode p1 = phead;
 	PNode p2 = NULL;
 	while (p1!=NULL&&(p1->pnext)!=NULL)
 	{
@@ -316,7 +361,7 @@ void readDATA(PNode phead)
 	int count;
 	PNode pfind = phead;
 	PNode padd =NULL;
-	FILE *fp ;                                     //一个文件指针 
+	FILE *fp ;                                        //一个文件指针 
     fp = fopen("data.txt","r");                       //读取文件	
 	if (fp == NULL)
 	{
