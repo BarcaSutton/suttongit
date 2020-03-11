@@ -15,9 +15,8 @@ int main()
 	int n = 0;                                    //用于储存用户的选择 
  	PNode phead;
 	phead = (PNode)malloc(sizeof(Node));	       //phead的类型以及分配的空间 
- 	CreateList(phead);  
+ 	phead = initialize();  
 	menu();                                       //菜单功能 
-    readDATA(phead);
 	scanf("%d",&n);                               //用户输入 
 	while(1) 
 	{
@@ -36,7 +35,8 @@ int main()
 				break;
  	    case 6:	display_record(phead);
 				break;
- 		case 0:writeDATA(phead);
+ 		case 0:  
+				exit(0);
 				break;
 		default:   
 				break;
