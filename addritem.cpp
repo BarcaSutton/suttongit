@@ -35,10 +35,9 @@ int main()
 				break;
  	    case 6:	display_record(phead);
 				break;
- 		case 0:  
-				exit(0);
+ 		case 0: exit(0);
 				break;
-		default:   
+		default: ("ÇëÊäÈëÊı×Ö£¨0-6£©") ; 
 				break;
 		}
 		getch();

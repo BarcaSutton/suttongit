@@ -1,7 +1,7 @@
 #ifndef _ADDRITEM_H_
 #define _ADDRITEM_H_
 
-PNode initialize();                                                                      //尾插法创建链表 
+PNode initialize();                                                                      //初始化链表 
 void input(PNode phead);                                                                 //创建联系人 
 void search(PNode phead);                                                                //查找联系人 
 void revise(PNode phead );                                                               //修改联系人 

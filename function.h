@@ -16,7 +16,7 @@ typedef Node* PNode;
 void insert(PNode p);                                                                     //尾插法创建一个新的结点 
 void emptynode(PNode p );                                                                 // 将传入的结点进行初始化处理 
 PNode initialize();                                                                       //初始化链表函数  
-//void judge_empty(PNode p);                                                               //判断传入的指针是否为空  
+void judge_empty(PNode p);                                                               //判断传入的指针是否为空  
   
 void input(PNode phead);                                         					    //联系人的添加函数 
 void search(PNode phead);                                                               //查找联系人函数 
